@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>ImageNet3D - Test</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-4">
+
+        <h1 class="pb-2">ImageNet3D Annotation Collection</h1>
+
+        <div class="container">
+
+            <form action="test" method="POST">
+                <button type="submit" name="submit" class="btn btn-outline-primary">Finish test</button>
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

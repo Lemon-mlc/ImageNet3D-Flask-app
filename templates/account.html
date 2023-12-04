@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>ImageNet3D - Account</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-4">
+
+        <h1 class="pb-2">ImageNet3D Annotation Collection</h1>
+
+        <div class="container">
+
+            <div class="row">
+                <p><span class="text-success"><i class="bi bi-person-fill-check"></i></span> Annotator {{ annotator_id }}</p>
+            </div>
+            <div class="row">
+                <p><a href="{{ url_for('logout') }}">[logout]</a></p>
+            </div>
+            <div class="row">
+                {% if pass_test %}
+                    <p><span class="text-success font-weight-bold"><i class="bi bi-check2-circle"></i></span> Annotator qualification test passed.</p>
+                {% else %}
+                    <p><span class="text-danger font-weight-bold"><i class="bi bi-x-circle"></i></span> Mandatory annotator qualification test not started. Please finish the test <a href="{{ url_for('test') }}">here</a>.</p>
+                {% endif %}
+            </div>
+            
+            <div class="row">
+                <p>Progress: {{ finished_anno }} / {{ total_anno }} ({{ progress }}).</p>
+            </div>
+
+            {% for url, task_total_anno, task_finished_anno, task_progress, task_name in tasks %}
+                <div class="row">
+                    <p>Task <a href="{{ url }}">{{ task_name }}</a>: {{ task_finished_anno }} / {{ task_total_anno }} ({{ task_progress }}).</p>
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+{% endblock %}

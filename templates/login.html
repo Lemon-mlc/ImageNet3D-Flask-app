@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>ImageNet3D - Login</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-4">
+
+        <h1 class="pb-2">ImageNet3D Annotation Collection</h1>
+
+        <div class="container">
+
+            {% if warning|length > 0 %}
+                <div class="alert alert-danger" role="alert">
+                    Annotator {{ warning }} not found!
+                </div>
+            {% endif %}
+
+            <form action="/" method="POST">
+                <div class="form-group">
+                    <label for="annotator_id">Annotator ID</label>
+                    <input type="text" class="form-control" name="annotator_id" id="annotator_id" placeholder="Enter annotator ID here">
+                </div>
+                <button type="submit" name="submit" class="btn btn-outline-primary">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

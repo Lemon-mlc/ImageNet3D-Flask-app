@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>ImageNet3D - Unauthorized</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-4">
+
+        <h1 class="pb-2">ImageNet3D Annotation Collection</h1>
+
+        <div class="container">
+
+            <p>
+                <span class="text-danger"><i class="bi bi-person-fill-dash"></i></span> Unauthorized annotator. Please <a href="{{ url_for('login') }}">log in</a> first.
+            </p>
+
+        </div>
+
+    </div>
+{% endblock %}
