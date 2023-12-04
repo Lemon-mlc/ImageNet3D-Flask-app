@@ -1,0 +1,6 @@
+Flask
+numpy
+matplotlib
+pillow
+opencv-python
+flask-login
