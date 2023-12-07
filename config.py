@@ -1,5 +1,5 @@
 DATABASE = 'database_default.sqlite'
-DATA_PATH = 'static/imagenet3d'
+DATA_PATH = '/annotations/imagenet3d'
 CAD_PATH = 'static/CAD/off'
 SAVE_PATH = 'running_log'
 NUM_MODELS = {
