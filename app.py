@@ -31,8 +31,8 @@ formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 console.setFormatter(formatter)
 logging.getLogger("").addHandler(console)
 
-NEW_DATABASE = f'database_{dt}.sqlite'
-shutil.copyfile(DATABASE, NEW_DATABASE)
+# NEW_DATABASE = f'database_{dt}.sqlite'
+# shutil.copyfile(DATABASE, NEW_DATABASE)
 
 app = Flask(__name__, static_url_path='')
 app.secret_key = 'there is no secret'
@@ -44,7 +44,7 @@ login_manager.init_app(app)
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        db = sqlite3.connect(NEW_DATABASE)
+        db = sqlite3.connect(DATABASE)
         db.row_factory = sqlite3.Row
         g._database = db
     return db

@@ -1,7 +1,7 @@
-DATABASE = 'database_default.sqlite'
-DATA_PATH = '/imagenet3dstorage/imagenet3d'
+DATABASE = '/imagenet3dstorage/imagenet3d_s24/database_s24.sqlite'
+DATA_PATH = '/imagenet3dstorage/imagenet3d_s24'
 CAD_PATH = 'static/CAD/off'
-SAVE_PATH = 'running_log'
+SAVE_PATH = '/imagenet3dstorage/imagenet3d_s24/log'
 NUM_MODELS = {
     'ashtray': 10,
     'suitcase': 9,
