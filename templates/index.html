@@ -45,7 +45,7 @@
                     <div class="row pt-2">
                         Task ID: &nbsp;<span id="task_id">{{ task_id }}</span>
                     </div>
-                    <div class="row pt-2">
+                    <div class="row pt-2 pb-2">
                         Question ID: &nbsp;<span id="question_id">{{ question_id }}</span>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                                     <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Reject current sample"><i class="bi bi-slash-circle"></i></button>
                                 </div> -->
                                 <div class="btn-group mr-2" role="group">
-                                    <button type="button" class="btn btn-outline-success action-save" data-toggle="tooltip" data-placement="top" title="Save current annotation"><i class="bi bi-save"></i></button>
+                                    <button type="button" class="btn btn-outline-success action-save" data-toggle="tooltip" data-placement="top" title="Save current annotation" id="save_button"><i class="bi bi-save"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                                 {% else %}
                                     <input class="form-check-input" type="radio" name="radio_status" id="status_good" value="0">
                                 {% endif %}
-                                <label class="form-check-label" for="radio_status_good">Good</label>
+                                <label class="form-check-label" for="status_good">Good</label>
                             </div>
                             <div class="form-check">
                                 {% if object_status == 'status_partially' %}
@@ -193,7 +193,7 @@
                                 {% else %}
                                     <input class="form-check-input" type="radio" name="radio_status" id="status_partially" value="1">
                                 {% endif %}
-                                <label class="form-check-label" for="radio_status_partially">Partially visible</label>
+                                <label class="form-check-label" for="status_partially">Partially visible</label>
                             </div>
                             <div class="form-check">
                                 {% if object_status == 'status_barely' %}
@@ -201,7 +201,7 @@
                                 {% else %}
                                     <input class="form-check-input" type="radio" name="radio_status" id="status_barely" value="2">
                                 {% endif %}
-                                <label class="form-check-label" for="radio_status_barely">Barely visible</label>
+                                <label class="form-check-label" for="status_barely">Barely visible</label>
                             </div>
                             <div class="form-check">
                                 {% if object_status == 'status_barely' %}
@@ -209,7 +209,7 @@
                                 {% else %}
                                     <input class="form-check-input" type="radio" name="radio_status" id="status_bad" value="3">
                                 {% endif %}
-                                <label class="form-check-label" for="radio_status_bad">Bad quality / no object</label>
+                                <label class="form-check-label" for="status_bad">Bad quality / no object</label>
                             </div>
                         </div>
                     </div>
