@@ -22,58 +22,77 @@
             </p>
 
             <p>
-                How do we describe an object in the 3D space? In this project, we specify the 3D viewpoint of the object (see image below), the 2D location of the object, and the distance from the camera to the object. This allows us to fully specify the 3D location and rotation of the object. Moreover, we are also interested in which subtype of the object is in the image -- if it is a car, is it a sedan or a hatchback. This is accomplished by associating the object with a best matching mesh model from a list of models given (you will see all the mesh models available in the bottom right corner of the annotation page).
+                <b>How do we describe an object in the 3D space?</b> In this project, we specify the 3D viewpoint of the object (see image below), the 2D location of the object (in the image plane), and the distance from the camera to the object. These six parameters allows us to fully specify the 3D location and 3D rotation of the object. Moreover, we are also interested in which subtype of the object is in the image -- if it is a car, is it a sedan or a hatchback. This is accomplished by associating the object with a best matching mesh model from a list of models given (you will see all the mesh models available in the bottom right corner of the annotation page).
             </p>
+
+            <img src="{{ url_for('static', filename='images/imagenet3d_viewpoint.png') }}" class="img-fluid pb-2" style="max-width: 50%">
 
             <p>
                 Lastly every real image comes with an existing annotation obtained from a pretrained 3D model. Your job would be refining the prediction of the model, as well as labeling the quality of the object. See below for a full list of "things to do" for each real image.
             </p>
 
-            <img src="{{ url_for('static', filename='images/imagenet3d_viewpoint.png') }}" class="img-fluid pb-2" style="max-width: 50%">
-
             <h3 class="pb-2 pt-4">Uesr Interface</h3>
 
-            <p><b>Step 1.</b> Log in to the web app with your annotator ID.</p>
+            <p>Log in to the web app with your annotator ID. You will see the list of tasks assigned to you and track your progress in this page.</p>
 
-            <img src="{{ url_for('static', filename='images/imagenet3d_login.png') }}" class="img-fluid" style="max-width: 50%">
+            <img src="{{ url_for('static', filename='images/ui_login.png') }}" class="img-fluid" style="max-width: 30%">
 
-            <p><b>Step 2.</b> After logged in, you will be redirected to the account page where you will see the lists of tasks you are assigned to and the current annotation progress.</p>
+            <p>
+                Clicking on a task will redirect you to the first unannotated question. On the top you will see basic information about this question, as well as multiple control buttons. Hovering on the buttons will show you what they do.
+                <ul>
+                    <li>Move between questions with "<", ">", or ">>".</li>
+                    <li>Delete current saved/unsaved annotation with the yellow reverse button.</li>
+                    <li>Save the current annotaion with the green save button. (Or hit "Enter" as shortcut.)</li>
+                </ul>
+            </p>
 
-            <img src="{{ url_for('static', filename='images/imagenet3d_account.png') }}" class="img-fluid" style="max-width: 50%">
+            <img src="{{ url_for('static', filename='images/ui_annotate.png') }}" class="img-fluid" style="max-width: 30%">
 
-            <p><b>Step 3.</b> Start annotating the data by clicking on any of the task names. Hovering on buttons or icons without texts will reveal text explanations.</p>
+            <p>The list of different CAD models are visualized on the bottom. Besides the 6D pose and type of model, you will also answer two questions on object quality and scene density.</p>
 
-            <img src="{{ url_for('static', filename='images/imagenet3d_annotate.png') }}" class="img-fluid" style="max-width: 50%">
+            <img src="{{ url_for('static', filename='images/ui_cads.png') }}" class="img-fluid" style="max-width: 30%">
+
+            <p>After labeling all information, clicking the green save button or pushing "Enter" key to save the annotation. If successful, you will see a message and the question status will be lighted.</p>
+
+            <img src="{{ url_for('static', filename='images/ui_save.png') }}" class="img-fluid" style="max-width: 30%">
 
             <h3 class="pb-2 pt-4">Guidelines</h3>
 
-            <ul>
+            <p>
+                <b>Matching mesh model (with initializations provided by a pretrained model).</b> The best matching model from a list of mesh models given. This is crucial to make accurate estimations of the following parameters so this should be the first thing to do. Click on "<- Model" and "Model ->" buttons to change the mesh model selection.
+            </p>
 
-                <li><b>3D rotation (with initializations provided by a pretrained model).</b> Three parameters are used to specify the 3D rotation of an object: azimuth, elevation, and in-plane rotation. Adjust the three parameters so the 3D rotation of the rendered object aligns with the 3D rotation of the object in the image. Make sure you are not simply aligning the segmentation or boundaries of the two objects. You should focus on aligning the 3D rotation of the objects so the rendered object is "pointing" to the same direction as the object in the image.</li>
+            <p>
+                <b>3D rotation (with initializations provided by a pretrained model).</b> Three parameters are used to specify the 3D rotation of an object: azimuth, elevation, and in-plane rotation (theta). Adjust the three parameters so the 3D rotation of the rendered object aligns with the 3D rotation of the object in the image. Make sure you are not simply aligning the segmentation or boundaries of the two objects. You should focus on aligning the 3D rotation of the objects so the rendered object is "pointing" to the same direction as the object in the image.
+            </p>
 
-                <li><b>2D location (with initializations provided by a pretrained model).</b>2D location specifies the location of the center of the object.</li>
+            <p>
+                <b>2D location (with initializations provided by a pretrained model).</b> 2D location specifies the location of the center of the object.
+            </p>
 
-                <li><b>Distance (with initializations provided by a pretrained model).</b> Distance between the object and the camera. To annotate the distance, make sure the "size" of the rendered object is roughly the same as the "size" of the object in the image.</li>
+            <p>
+                <b>Distance (with initializations provided by a pretrained model).</b> Distance between the object and the camera. To annotate the distance, make sure the "size" of the rendered object is roughly the same as the "size" of the object in the image.
+            </p>
 
-                <li><b>Matching mesh model (with initializations provided by a pretrained model).</b> The best matching model from a list of mesh models given.</li>
-
-                <li><b>Object quality.</b> Object quality specifies how clearly the object is visible from the image. Several choices are considered</li>
-
+            <p>
+                <b>Object quality.</b> Object quality specifies how clearly the object is visible from the image. A "good" object would be clearly visible and not occluded. A "bad" object may be barely visible (imaging drving in heavy fog when cars in front of you are barely visible) or occluded by other objects. Several choices are considered:
                 <ul>
                     <li><i>Good.</i> Most part (more than 90%) of the object is clearly visible in the image.</li>
                     <li><i>Partially visible.</i> A small part of the object is occluded by other objects or outside the image (truncated by image boundary).</li>
-                    <li><i>Barely visible.</i> only a small part of the object is clearly visible -- the other parts are either occluded or outside the image.</li>
-                    <li><i>Bad quality / no object.</i> Most part of the object is occluded or outside the image; or the pose of the object is hard to tell.</li>
+                    <li><i>Barely visible.</i> only a small part of the object is clearly visible -- the other parts are either occluded or outside the image, or barely visible due to other reasons (e.g., weather).</li>
+                    <li><i>Bad quality / no object.</i> Most part of the object is occluded or outside the image; or the pose of the object is very hard to tell.</li>
                 </ul>
+            </p>
 
-                <li><b>Dense scene.</b> The parameter tells if an object is very close to another object from the same category. Here "close" is defined in the 2D image plane -- two objects are close if the distance between them is small in the 2D image plane.</li>
-
+            <p>
+                <b>Dense scene.</b> This parameter tells if an object is very close to another object from the same category. Here "close" is defined in the 2D image plane -- two objects are close if the distance between them is small in the 2D image plane.
                 <ul>
                     <li><i>Not dense scene.</i> The object is not close to another object from the same category. There can be multiple objects from the same category in one image but the objects are far away from each other.
                     <li><i>Dense scene.</i> The object is very close to another object from the same category. They may occlude each other or simply very close to each other.</li>
                 </ul>
+            </p>
 
-            </ul>
+            <h3 class="pb-2 pt-4">Examples</h3>
 
             <h2 class="pb-2">References</h2>
 
