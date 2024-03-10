@@ -1,5 +1,5 @@
 DATABASE = '/imagenet3dstorage/imagenet3d_s24_v2/database_s24_v2.sqlite'
-DATA_PATH = '/imagenet3dstorage/imagenet3d_s24_v2'
+DATA_PATH = '/imagenet3dstorage/imagenet3d_s24_v2/imagenet3d_s24_v2'
 CAD_PATH = 'static/CAD/off'
 SAVE_PATH = '/imagenet3dstorage/imagenet3d_s24_v2/log'
 NUM_MODELS = {
