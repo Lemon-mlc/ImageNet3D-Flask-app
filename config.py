@@ -1,7 +1,7 @@
-DATABASE = '/imagenet3dstorage/imagenet3d_s24/database_s24.sqlite'
-DATA_PATH = '/imagenet3dstorage/imagenet3d_s24'
+DATABASE = '/imagenet3dstorage/imagenet3d_s24_v2/database_s24_v2.sqlite'
+DATA_PATH = '/imagenet3dstorage/imagenet3d_s24_v2'
 CAD_PATH = 'static/CAD/off'
-SAVE_PATH = '/imagenet3dstorage/imagenet3d_s24/log'
+SAVE_PATH = '/imagenet3dstorage/imagenet3d_s24_v2/log'
 NUM_MODELS = {
     'ashtray': 10,
     'suitcase': 9,
@@ -102,7 +102,48 @@ NUM_MODELS = {
     'key': 13,
     'fork': 9,
     'eraser': 15,
-    'bookshelf': 8
+    'bookshelf': 8,
+    'chime': 4,
+    'dumbbell': 3,
+    'golfcart': 2,
+    'harp': 3,
+    'unicycle': 4,
+    'snowmobile': 2,
+    'salt_or_pepper_shaker': 4,
+    'jinrikisha': 2,
+    'axe': 4,
+    'bow': 4,
+    'go_kart': 3,
+    'hair_dryer': 2,
+    'trumpet': 2,
+    'violin': 4,
+    'recreational_vehicle': 4,
+    'punching_bag': 2,
+    'power_drill': 3,
+    'garbage_truck': 2,
+    'forklift': 4,
+    'fire_truck': 4,
+    'combination_lock': 3,
+    'chain_saw': 3,
+    'hand_barrow': 4,
+    'airship': 3,
+    'bowl': 4,
+    'wine_glass': 3,
+    'ax': 5,
+    'ambulance': 5,
+    'beaker': 1,
+    'bicycle_built_for_two': 3,
+    'french_horn': 1,
+    'oboe': 1,
+    'crutch': 1,
+    'harvester': 3,
+    'hourglass': 3,
+    'padlock': 4,
+    'sax': 3,
+    'oscilloscope': 3,
+    'sink': 2,
+    'pay_phone': 3,
+    'cart': 5
 }
 step_size = {
     'azim': 1.0,
@@ -111,4 +152,12 @@ step_size = {
     'dist': 0.2,
     'px': 5.0,
     'py': 5.0
+}
+step_size2 = {
+    'azim': 30.0,
+    'elev': 30.0,
+    'theta': 30.0,
+    'dist': 1.0,
+    'px': 30.0,
+    'py': 30.0
 }
