@@ -9,8 +9,9 @@ import uuid
 from flask import Flask, render_template, request, url_for, jsonify, redirect, g
 import flask_login
 import numpy as np
+from PIL import Image
 
-from config import DATABASE, DATA_PATH, CAD_PATH, NUM_MODELS, SAVE_PATH, step_size
+from config import DATABASE, DATA_PATH, CAD_PATH, NUM_MODELS, SAVE_PATH, step_size, step_size2
 from render import matplotlib_line_render
 
 save_path = SAVE_PATH
@@ -466,10 +467,12 @@ def action_clear():
     pose_img = _render_pose(
         cad_path, annotator=flask_login.current_user.id, viewport=viewport,
         **pose)
+    raw_img = _raw(img_path, flask_login.current_user.id)
 
     return jsonify({
         'rendered_img': rendered_img,
         'pose_img': pose_img,
+        'raw_img': raw_img,
         'status_initialized': initialized,
         'status_finished': 0,
         'status_rejected': 0,
@@ -637,6 +640,7 @@ def annotate():
     rendered_img = _render(
         img_path, cad_path, annotator=flask_login.current_user.id, viewport=viewport,
         **pose)
+    raw_img = _raw(img_path, annotator=flask_login.current_user.id)
     pose_img = _render_pose(
         cad_path, annotator=flask_login.current_user.id, viewport=viewport,
         **pose)
@@ -649,6 +653,7 @@ def annotate():
         return render_template(
             'index.html', **pose, annotator_id=annotator_id,
             rendered_img=rendered_img, pose_img=pose_img,
+            raw_img=raw_img,
             model_id=get_model_id(cad_path),
             img_path=question['img_path'],
             anno_path=question['anno_path'],
@@ -782,6 +787,14 @@ def _render(img_path, cad_path, azim, elev, theta, dist, px, py, annotator, view
     return fname
 
 
+def _raw(img_path, annotator):
+    img = Image.open(img_path).convert('RGB')
+    [os.remove(f) for f in glob.glob(f'static/tmp/raw_{annotator}_*.jpg')]
+    fname = f'tmp/raw_{annotator}_{uuid.uuid4().hex}.jpg'
+    img.save(f'static/{fname}')
+    return fname
+
+
 @app.route('/azim_dec', methods=["POST"])
 def azim_dec():
     azim = request.args.get('azim', default=0.0, type=float)
@@ -801,6 +814,32 @@ def azim_dec():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, new_azim, elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, new_azim, elev, theta, dist, px, py, annotator, viewport),
+        'key': 'azim',
+        'value': new_azim})
+
+
+@app.route('/azim_dec2', methods=["POST"])
+def azim_dec2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_azim = azim - step_size2['azim']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, new_azim, elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, new_azim, elev, theta, dist, px, py, annotator, viewport),
         'key': 'azim',
         'value': new_azim})
@@ -825,6 +864,32 @@ def azim_inc():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, new_azim, elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, new_azim, elev, theta, dist, px, py, annotator, viewport),
+        'key': 'azim',
+        'value': new_azim})
+
+
+@app.route('/azim_inc2', methods=["POST"])
+def azim_inc2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_azim = azim + step_size2['azim']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, new_azim, elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, new_azim, elev, theta, dist, px, py, annotator, viewport),
         'key': 'azim',
         'value': new_azim})
@@ -849,6 +914,32 @@ def elev_dec():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, new_elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, new_elev, theta, dist, px, py, annotator, viewport),
+        'key': 'elev',
+        'value': new_elev})
+
+
+@app.route('/elev_dec2', methods=["POST"])
+def elev_dec2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_elev = elev - step_size2['elev']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, new_elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, new_elev, theta, dist, px, py, annotator, viewport),
         'key': 'elev',
         'value': new_elev})
@@ -873,6 +964,32 @@ def elev_inc():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, new_elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, new_elev, theta, dist, px, py, annotator, viewport),
+        'key': 'elev',
+        'value': new_elev})
+
+
+@app.route('/elev_inc2', methods=["POST"])
+def elev_inc2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_elev = elev + step_size2['elev']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, new_elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, new_elev, theta, dist, px, py, annotator, viewport),
         'key': 'elev',
         'value': new_elev})
@@ -897,6 +1014,32 @@ def theta_dec():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, new_theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, elev, new_theta, dist, px, py, annotator, viewport),
+        'key': 'theta',
+        'value': new_theta})
+
+
+@app.route('/theta_dec2', methods=["POST"])
+def theta_dec2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_theta = theta - step_size2['theta']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, elev, new_theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, new_theta, dist, px, py, annotator, viewport),
         'key': 'theta',
         'value': new_theta})
@@ -921,6 +1064,32 @@ def theta_inc():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, new_theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, elev, new_theta, dist, px, py, annotator, viewport),
+        'key': 'theta',
+        'value': new_theta})
+
+
+@app.route('/theta_inc2', methods=["POST"])
+def theta_inc2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_theta = theta + step_size2['theta']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, elev, new_theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, new_theta, dist, px, py, annotator, viewport),
         'key': 'theta',
         'value': new_theta})
@@ -945,6 +1114,32 @@ def dist_dec():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, new_dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, elev, theta, new_dist, px, py, annotator, viewport),
+        'key': 'dist',
+        'value': new_dist})
+
+
+@app.route('/dist_dec2', methods=["POST"])
+def dist_dec2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_dist = dist - step_size2['dist']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, elev, theta, new_dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, new_dist, px, py, annotator, viewport),
         'key': 'dist',
         'value': new_dist})
@@ -969,6 +1164,32 @@ def dist_inc():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, new_dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, elev, theta, new_dist, px, py, annotator, viewport),
+        'key': 'dist',
+        'value': new_dist})
+
+
+@app.route('/dist_inc2', methods=["POST"])
+def dist_inc2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_dist = dist + step_size2['dist']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, elev, theta, new_dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, new_dist, px, py, annotator, viewport),
         'key': 'dist',
         'value': new_dist})
@@ -993,6 +1214,32 @@ def px_dec():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, new_px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, elev, theta, dist, new_px, py, annotator, viewport),
+        'key': 'px',
+        'value': new_px})
+
+
+@app.route('/px_dec2', methods=["POST"])
+def px_dec2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_px = px - step_size2['px']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, new_px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, dist, new_px, py, annotator, viewport),
         'key': 'px',
         'value': new_px})
@@ -1017,6 +1264,32 @@ def px_inc():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, new_px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, elev, theta, dist, new_px, py, annotator, viewport),
+        'key': 'px',
+        'value': new_px})
+
+
+@app.route('/px_inc2', methods=["POST"])
+def px_inc2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_px = px + step_size2['px']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, new_px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, dist, new_px, py, annotator, viewport),
         'key': 'px',
         'value': new_px})
@@ -1041,6 +1314,32 @@ def py_dec():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, px, new_py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, elev, theta, dist, px, new_py, annotator, viewport),
+        'key': 'py',
+        'value': new_py})
+
+
+@app.route('/py_dec2', methods=["POST"])
+def py_dec2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_py = py - step_size2['py']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, px, new_py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, dist, px, new_py, annotator, viewport),
         'key': 'py',
         'value': new_py})
@@ -1065,6 +1364,32 @@ def py_inc():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, px, new_py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
+        'pose_img': _render_pose(cad_path, azim, elev, theta, dist, px, new_py, annotator, viewport),
+        'key': 'py',
+        'value': new_py})
+
+
+@app.route('/py_inc2', methods=["POST"])
+def py_inc2():
+    azim = request.args.get('azim', default=0.0, type=float)
+    elev = request.args.get('elev', default=0.0, type=float)
+    theta = request.args.get('theta', default=0.0, type=float)
+    dist = request.args.get('dist', default=0.0, type=float)
+    px = request.args.get('px', default=0.0, type=float)
+    py = request.args.get('py', default=0.0, type=float)
+    model_id = request.args.get('model_id', default=1, type=str)
+    annotator = request.args.get('annotator', default='none', type=str)
+    img_path = os.path.join(DATA_PATH, request.args.get('img_path', type=str))
+    viewport = request.args.get('viewport', type=float)
+
+    new_py = py + step_size2['py']
+
+    cad_path = os.path.join(CAD_PATH, model_id.replace('_', '/')+'.off')
+
+    return jsonify({
+        'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, px, new_py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, dist, px, new_py, annotator, viewport),
         'key': 'py',
         'value': new_py})
@@ -1095,6 +1420,7 @@ def model_dec():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, dist, px, py, annotator, viewport),
         'key': 'model_id',
         'value': new_model_id})
@@ -1125,6 +1451,7 @@ def model_inc():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, dist, px, py, annotator, viewport),
         'key': 'model_id',
         'value': new_model_id})
@@ -1147,6 +1474,7 @@ def text():
 
     return jsonify({
         'rendered_img': _render(img_path, cad_path, azim, elev, theta, dist, px, py, annotator, viewport),
+        'raw_img': _raw(img_path, annotator),
         'pose_img': _render_pose(cad_path, azim, elev, theta, dist, px, py, annotator, viewport)})
 
 
