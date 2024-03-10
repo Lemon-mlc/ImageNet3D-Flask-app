@@ -138,6 +138,13 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="text-left">
+                            <button type="button" class="btn btn-outline-danger pose-btn" id="azim_dec2">Azimuth ↓↓</button>
+                            <button type="button" class="btn btn-outline-success pose-btn" id="azim_inc2">Azimuth ↑↑</button>
+                        </div>
+                    </div>
+
                     <div class="row pt-4">
                         <form>
                             <div class="form-group">
@@ -157,6 +164,13 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="text-left">
+                            <button type="button" class="btn btn-outline-danger pose-btn" id="theta_dec2">Theta ↓↓</button>
+                            <button type="button" class="btn btn-outline-success pose-btn" id="theta_inc2">Theta ↑↑</button>
+                        </div>
+                    </div>
+
                     <div class="row pt-4">
                         <form>
                             <div class="form-group">
@@ -171,8 +185,15 @@
 
                     <div class="row">
                         <div class="text-left">
-                            <button type="button" class="btn btn-outline-danger pose-btn" id="px_dec">Center (X) ↓</button>
-                            <button type="button" class="btn btn-outline-success pose-btn" id="px_inc">Center (X) ↑</button>
+                            <button type="button" class="btn btn-outline-danger pose-btn" id="px_dec">Ctr (X) ↓</button>
+                            <button type="button" class="btn btn-outline-success pose-btn" id="px_inc">Ctr (X) ↑</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="text-left">
+                            <button type="button" class="btn btn-outline-danger pose-btn" id="px_dec2">Ctr (X) ↓↓</button>
+                            <button type="button" class="btn btn-outline-success pose-btn" id="px_inc2">Ctr (X) ↑↑</button>
                         </div>
                     </div>
 
@@ -204,7 +225,7 @@
                                 <label class="form-check-label" for="status_barely">Barely visible</label>
                             </div>
                             <div class="form-check">
-                                {% if object_status == 'status_barely' %}
+                                {% if object_status == 'status_bad' %}
                                     <input class="form-check-input" type="radio" name="radio_status" id="status_bad" value="3" checked>
                                 {% else %}
                                     <input class="form-check-input" type="radio" name="radio_status" id="status_bad" value="3">
@@ -244,6 +265,13 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="text-left">
+                            <button type="button" class="btn btn-outline-danger pose-btn" id="elev_dec2">Elevation ↓↓</button>
+                            <button type="button" class="btn btn-outline-success pose-btn" id="elev_inc2">Elevation ↑↑</button>
+                        </div>
+                    </div>
+
                     <div class="row pt-4">
                         <form>
                             <div class="form-group">
@@ -263,6 +291,13 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="text-left">
+                            <button type="button" class="btn btn-outline-danger pose-btn" id="dist_dec2">Distance ↓↓</button>
+                            <button type="button" class="btn btn-outline-success pose-btn" id="dist_inc2">Distance ↑↑</button>
+                        </div>
+                    </div>
+
                     <div class="row pt-4">
                         <form>
                             <div class="form-group">
@@ -277,8 +312,15 @@
 
                     <div class="row">
                         <div class="text-left">
-                            <button type="button" class="btn btn-outline-danger pose-btn" id="py_dec">Center (Y) ↓</button>
-                            <button type="button" class="btn btn-outline-success pose-btn" id="py_inc">Center (Y) ↑</button>
+                            <button type="button" class="btn btn-outline-danger pose-btn" id="py_dec">Ctr (Y) ↓</button>
+                            <button type="button" class="btn btn-outline-success pose-btn" id="py_inc">Ctr (Y) ↑</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="text-left">
+                            <button type="button" class="btn btn-outline-danger pose-btn" id="py_dec2">Ctr (Y) ↓↓</button>
+                            <button type="button" class="btn btn-outline-success pose-btn" id="py_inc2">Ctr (Y) ↑↑</button>
                         </div>
                     </div>
 
@@ -312,6 +354,9 @@
                     </div>
                     <div class="text-center pt-4">
                         <img src="{{ url_for('static', filename=pose_img) }}" class="img-fluid" alt="Pose visualization" id="pose_img">
+                    </div>
+                    <div class="text-center pt-4">
+                        <img src="{{ url_for('static', filename=raw_img) }}" class="img-fluid" alt="Raw image" id="raw_img">
                     </div>
                     <div class="text-center pt-4 pb-4">
                         <img src="https://www.cs.jhu.edu/~wufeim/vis_models_merged/{{ cate }}.png" class="img-fluid" alt="All CAD models">

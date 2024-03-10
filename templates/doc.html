@@ -35,6 +35,25 @@
 
             <img src="{{ url_for('static', filename='images/imagenet3d_viewpoint.png') }}" class="img-fluid pb-2" style="max-width: 50%">
 
+            <h3 class="pb-2 pt-4">New for v2 (Mar 2024)</h3>
+
+            <ol>
+                <li>As we start to deal with more challenging classes, we no longer have good initializations for the 3D orientation. New buttons are added with "↓↓" and "↑↑", which mean they are coarse buttons with bigger steps.</li>
+                <li>Since we don't have good initializations, labeling one image may takes longer. Please be patient and make sure the results are visually correct.</li>
+                <li>The quality of the images can be lower too -- some bounding boxes may not correspond to the class of interest. It is therefore important to label and disregard "bad" objects. Label the question as "bad quality/no object" so we will disregard this sample. In this case, you may skip tuning other parameters.</li>
+                <li>Similar as before, it is important to label the visibility and the scene density. If you have gone through the <a href="https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view?usp=sharing">tutorial</a>, you should have a good feeling of how to label these questions.</li>
+            </ol>
+
+            <p>Some other class-specific notes:</p>
+
+            <ul>
+                <li><b>bicycle-built-for-two:</b> We don't have good mesh models for tandem bicycles so we will be using mesh models of normal bicycles. This shouldn't be a problem as long as you match the 2D center and 3D orientation of the tandem bicycle in the image and the rendered mesh model.</li>
+                <li><b>beaker:</b> There are different subtypes of beakers but we don't have good mesh models covering every shape. This wouldn't be a problem for the pose parameters we consider here. For 3D viewpoint, match the orientation of the beaker notch. 2D location and distance should be straightforward too.</li>
+                <li><b>oboe:</b> It's almost impossible to tell the "azimuth" of an oboe. Just ignore this parameter and match the others.</li>
+                <li><b>crutch:</b> There can be different types of crutches (see <a href="https://www.physio-pedia.com/File:Types_of_crutches.jpg">here</a>). We only want the type that matches the mesh model we have (i.e., axillary crutch). For other types of crutches, just label them as "bad quality/no object".</li>
+                <li><b>punching_bag:</b> There are different types of punching bags (see <a href="https://img2.storyblok.com/1800x743/filters:focal(null):format(webp)/f/115220/2400x990/eae71daccc/how-to-choose-the-right-punching-bag-for-your-workout.jpeg">here</a>). We only want boxing bag and hanging bags, with a cylinder shape. For punching bags, also ignore the "azimuth" parameter.</li>
+            </ul>
+
             <h3 class="pb-2 pt-4">Uesr Interface</h3>
 
             <p>Log in to the web app with your annotator ID. You will see the list of tasks assigned to you and track your progress in this page.</p>
