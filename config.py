@@ -165,7 +165,7 @@ NUM_MODELS = {
     'tank': 4,
     'tractor': 3,
     'treadmill': 3,
-    'tircycle': 4,
+    'tricycle': 4,
     'trolley_bus': 2,
     'washer': 2,
     'yurt': 1,
