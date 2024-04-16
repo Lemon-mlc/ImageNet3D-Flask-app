@@ -169,7 +169,13 @@ NUM_MODELS = {
     'trolley_bus': 2,
     'washer': 2,
     'yurt': 1,
-    'syringe': 2
+    'syringe': 2,
+    'radiator': 2,
+    'riding_mower': 2,
+    'shaver': 1,
+    'sundial': 1,
+    'whisk': 1,
+    'wind_turbine': 2
 }
 step_size = {
     'azim': 1.0,
