@@ -162,6 +162,7 @@ NUM_MODELS = {
     'shopping_cart': 2,
     'sombrero': 2,
     'tennis_table': 2,
+    'table_tennis_table': 2,
     'tank': 4,
     'tractor': 3,
     'treadmill': 3,
