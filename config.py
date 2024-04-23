@@ -176,7 +176,18 @@ NUM_MODELS = {
     'shaver': 1,
     'sundial': 1,
     'whisk': 1,
-    'wind_turbine': 2
+    'wind_turbine': 2,
+    'air_hammer': 1,
+    'bicycle_pump': 1,
+    'binoculars': 2,
+    'bumper_car': 2,
+    'camcorder': 2,
+    'cone': 2,
+    'funnel': 2,
+    'hand_mower': 2,
+    'light_bulb': 2,
+    'micrometer': 1,
+    'trowel': 2
 }
 step_size = {
     'azim': 1.0,
