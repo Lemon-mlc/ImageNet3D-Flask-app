@@ -187,7 +187,15 @@ NUM_MODELS = {
     'hand_mower': 2,
     'light_bulb': 2,
     'micrometer': 1,
-    'trowel': 2
+    'trowel': 2,
+    'battery': 2,
+    'boxing_glove': 1,
+    'cooling_tower': 1,
+    'duplicator': 1,
+    'frigate': 2,
+    'interphone': 2,
+    'life_buoy': 1,
+    'megaphone': 2
 }
 step_size = {
     'azim': 1.0,
