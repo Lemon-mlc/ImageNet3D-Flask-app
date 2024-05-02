@@ -195,7 +195,12 @@ NUM_MODELS = {
     'frigate': 2,
     'interphone': 2,
     'life_buoy': 1,
-    'megaphone': 2
+    'megaphone': 2,
+    'frisbee': 1,
+    'hacksaw': 2,
+    'ferris_wheel': 1,
+    'grinder': 1,
+    'glider': 1
 }
 step_size = {
     'azim': 1.0,
