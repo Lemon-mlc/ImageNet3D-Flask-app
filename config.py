@@ -1,4 +1,4 @@
-DATABASE = '/imagenet3dstorage/imagenet3d_s24_v3/database_s24_v5.sqlite'
+DATABASE = '/imagenet3dstorage/imagenet3d_s24_v3/database_s24_v6.sqlite'
 DATA_PATH = '/imagenet3dstorage/imagenet3d_s24_v3'
 CAD_PATH = 'static/CAD/off'
 SAVE_PATH = '/imagenet3dstorage/imagenet3d_s24_v3/log'
