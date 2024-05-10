@@ -200,7 +200,17 @@ NUM_MODELS = {
     'hacksaw': 2,
     'ferris_wheel': 1,
     'grinder': 1,
-    'glider': 1
+    'glider': 1,
+    'magnifier': 2,
+    'dune_buggy': 1,
+    'cooker': 1,
+    'school_bus': 3,
+    'millwheel': 1,
+    'hurricane_lamp': 1,
+    'highchair': 2,
+    'hovercraft': 2,
+    'erlenmeyer_flask': 1,
+    'pressure_cooker': 1
 }
 step_size = {
     'azim': 1.0,
