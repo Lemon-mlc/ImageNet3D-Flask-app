@@ -314,7 +314,8 @@ def get_next_unannotated_question(task, idx, quality=False):
         else:
             return questions[curr_idx], True, curr_idx
 
-    return None, False, -1
+    # return None, False, -1
+    return questions[0], True, 0
 
 
 def get_question_eval(task, idx):
