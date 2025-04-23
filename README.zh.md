@@ -1,3 +1,1 @@
-# ImageNet3D Flask app
-# 测试改动
 <!-- by zhuang xin jian 2205308040315 -->
