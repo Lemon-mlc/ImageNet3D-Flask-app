@@ -24,22 +24,23 @@ This opens many new opportunities for 3D understanding (e.g., grounding, detecti
 
 Lastly every real image comes with an existing annotation obtained from a pretrained 3D model. Your job would be refining the prediction of the model, as well as labeling the quality of the object. See below for a full list of "things to do" for each real image.
 
-❗**Read me ☺ → Before you start, it is very important for you to go over this tutorial with qualitative examples demonstrating many important details. The first part of the tutorial is similar to this documentation and the second part of the tutorial provides a lot of qualitative images. Please go over a number of the examples in part two to make sure you fully grasp the idea.**
+❗**Read me ☺ → Before you start, it is very important for you to go over this [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view) with qualitative examples demonstrating many important details. The first part of the tutorial is similar to this documentation and the second part of the tutorial provides a lot of qualitative images. Please go over a number of the examples in part two to make sure you fully grasp the idea.**
 
 ![image](static/images/imagenet3d_viewpoint.png)
 
 ## New for v2 (Mar 2024)
-As we start to deal with more challenging classes, we no longer have good initializations for the 3D orientation. New buttons are added with "↓↓" and "↑↑", which mean they are coarse buttons with bigger steps.
-Since we don't have good initializations, labeling one image may takes longer. Please be patient and make sure the results are visually correct.
-The quality of the images can be lower too -- some bounding boxes may not correspond to the class of interest. It is therefore important to label and disregard "bad" objects. Label the question as "bad quality/no object" so we will disregard this sample. In this case, you may skip tuning other parameters.
-Similar as before, it is important to label the visibility and the scene density. If you have gone through the tutorial, you should have a good feeling of how to label these questions.
+1.As we start to deal with more challenging classes, we no longer have good initializations for the 3D orientation. New buttons are added with "↓↓" and "↑↑", which mean they are coarse buttons with bigger steps.
+2.Since we don't have good initializations, labeling one image may takes longer. Please be patient and make sure the results are visually correct.
+3.The quality of the images can be lower too -- some bounding boxes may not correspond to the class of interest. It is therefore important to label and disregard "bad" objects. Label the question as "bad quality/no object" so we will disregard this sample. In this case, you may skip tuning other parameters.
+4.Similar as before, it is important to label the visibility and the scene density. If you have gone through the [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view), you should have a good feeling of how to label these questions.
+
 Some other class-specific notes:
 
 - **bicycle-built-for-two:** We don't have good mesh models for tandem bicycles so we will be using mesh models of normal bicycles. This shouldn't be a problem as long as you match the 2D center and 3D orientation of the tandem bicycle in the image and the rendered mesh model.
 - **beaker:** There are different subtypes of beakers but we don't have good mesh models covering every shape. This wouldn't be a problem for the pose parameters we consider here. For 3D viewpoint, match the orientation of the beaker notch. 2D location and distance should be straightforward too.
 - **oboe:** It's almost impossible to tell the "azimuth" of an oboe. Just ignore this parameter and match the others.
-- **crutch:** There can be different types of crutches (see here). We only want the type that matches the mesh model we have (i.e., axillary crutch). For other types of crutches, just label them as "bad quality/no object".
-- **punching_bag:** There are different types of punching bags (see here). We only want boxing bag and hanging bags, with a cylinder shape. For punching bags, also ignore the "azimuth" parameter.
+- **crutch:** There can be different types of crutches (see [here](https://www.physio-pedia.com/File:Types_of_crutches.jpg)). We only want the type that matches the mesh model we have (i.e., axillary crutch). For other types of crutches, just label them as "bad quality/no object".
+- **punching_bag:** There are different types of punching bags (see [here](https://img2.storyblok.com/1800x743/filters:focal(null):format(webp)/f/115220/2400x990/eae71daccc/how-to-choose-the-right-punching-bag-for-your-workout.jpeg)). We only want boxing bag and hanging bags, with a cylinder shape. For punching bags, also ignore the "azimuth" parameter.
 
 ## Uesr Interface
 Log in to the web app with your annotator ID. You will see the list of tasks assigned to you and track your progress in this page.
@@ -83,10 +84,10 @@ After labeling all information, clicking the green save button or pushing "Enter
 - Dense scene. The object is very close to another object from the same category. They may occlude each other or simply very close to each other.
 
 ## Examples
-See tutorial.
+See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).
 
 ## References
-[1] Adding 3D Geometry Control to Diffusion Models
+[1] [Adding 3D Geometry Control to Diffusion Models](https://arxiv.org/abs/2306.08103)
 
-[2] Robust Category-Level 6D Pose Estimation with Coarse-to-Fine Rendering of Neural Features
+[2] [Robust Category-Level 6D Pose Estimation with Coarse-to-Fine Rendering of Neural Features](https://arxiv.org/abs/2209.05624)
 <!-- by zhuang xin jian 2205308040315 -->
