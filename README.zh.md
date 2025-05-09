@@ -92,11 +92,11 @@
 请参阅[教程](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view)。<br>
 
 ## 📚参考文献
-<p id="ref1">
+<p id="ref1"></p>
 [1] [在扩散模型中添加 3D 几何控制](https://arxiv.org/abs/2306.08103) 
-</p><br>
+<br>
 
-<p id="ref2">
+<p id="ref2"></p>
 [2] [基于神经特征粗到细渲染的鲁棒类别级 6D 位姿估计](https://arxiv.org/abs/2209.05624) 
-</p><br>
+<br>
 <!-- by zhuang xin jian 2205308040315 -->

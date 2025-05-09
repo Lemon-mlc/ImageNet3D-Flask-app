@@ -96,11 +96,11 @@ After labeling all information, clicking the green save button or pushing "Enter
 See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).<br>
 
 ## 📚References
-<p id="ref1">
+<p id="ref1"></p>
 [1] [Adding 3D Geometry Control to Diffusion Models](https://arxiv.org/abs/2306.08103) 
-</p><br>
+<br>
 
-<p id="ref2">
+<p id="ref2"></p>
 [2] [Robust Category-Level 6D Pose Estimation with Coarse-to-Fine Rendering of Neural Features](https://arxiv.org/abs/2209.05624) 
-</p><br>
+<br>
 <!-- by zhuang xin jian 2205308040315 -->
