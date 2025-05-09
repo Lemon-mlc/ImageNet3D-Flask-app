@@ -1,6 +1,6 @@
 # ImageNet3D Flask app
 ## Guidelines
-*Matching mesh model (with initializations provided by a pretrained model).*
+***Matching mesh model (with initializations provided by a pretrained model).***
 The best matching model from a list of mesh models given. This is crucial to make accurate estimations of the following parameters so this should be the first thing to do. Click on "<- Model" and "Model ->" buttons to change the mesh model selection.
 
 *3D rotation (with initializations provided by a pretrained model).* Three parameters are used to specify the 3D rotation of an object: azimuth, elevation, and in-plane rotation (theta). Adjust the three parameters so the 3D rotation of the rendered object aligns with the 3D rotation of the object in the image. Make sure you are not simply aligning the segmentation or boundaries of the two objects. You should focus on aligning the 3D rotation of the objects so the rendered object is "pointing" to the same direction as the object in the image.
