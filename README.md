@@ -97,8 +97,10 @@ See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu
 
 ## 📚References
 <p id="ref1">
-[1] [Adding 3D Geometry Control to Diffusion Models](https://arxiv.org/abs/2306.08103) </p><br>
+[1] [Adding 3D Geometry Control to Diffusion Models](https://arxiv.org/abs/2306.08103) 
+</p><br>
 
 <p id="ref2">
-[2] [Robust Category-Level 6D Pose Estimation with Coarse-to-Fine Rendering of Neural Features](https://arxiv.org/abs/2209.05624) </p><br>
+[2] [Robust Category-Level 6D Pose Estimation with Coarse-to-Fine Rendering of Neural Features](https://arxiv.org/abs/2209.05624) 
+</p><br>
 <!-- by zhuang xin jian 2205308040315 -->
