@@ -14,7 +14,7 @@ Distance between the object and the camera. To annotate the distance, make sure 
 ***Object quality.***
  Object quality specifies how clearly the object is visible from the image. A "good" object would be clearly visible and not occluded. A "bad" object may be barely visible (imaging drving in heavy fog when cars in front of you are barely visible) or occluded by other objects. Several choices are considered:
 
-   ** Good.** Most part (more than 90%) of the object is clearly visible in the image.
+   **Good.** Most part (more than 90%) of the object is clearly visible in the image.
     **Partially visible.** A small part of the object is occluded by other objects or outside the image (truncated by image boundary).
     **Barely visible.** only a small part of the object is clearly visible -- the other parts are either occluded or outside the image, or barely visible due to other reasons (e.g., weather).
     **Bad quality / no object.** Most part of the object is occluded or outside the image; or the pose of the object is very hard to tell.
