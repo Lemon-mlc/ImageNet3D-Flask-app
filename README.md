@@ -23,7 +23,7 @@ This opens many new opportunities for 3D understanding (e.g., grounding, detecti
 **How do we describe an object in the 3D space?** In this project, we specify the 3D viewpoint of the object (see image below), the 2D location of the object (in the image plane), and the distance from the camera to the object. These six parameters allows us to fully specify the 3D location and 3D rotation of the object. Moreover, we are also interested in which subtype of the object is in the image -- if it is a car, is it a sedan or a hatchback. This is accomplished by associating the object with a best matching mesh model from a list of models given (you will see all the mesh models available in the bottom right corner of the annotation page).<br>
 
 Lastly every real image comes with an existing annotation obtained from a pretrained 3D model. Your job would be refining the prediction of the model, as well as labeling the quality of the object. See below for a full list of "things to do" for each real image.<br>
-
+<!-- 潘钟贤 --> 
 
 **❗Read me ☺ → Before you start, it is very important for you to go over this [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view) with qualitative examples demonstrating many important details. The first part of the tutorial is similar to this documentation and the second part of the tutorial provides a lot of qualitative images. Please go over a number of the examples in part two to make sure you fully grasp the idea.** <br>
 
