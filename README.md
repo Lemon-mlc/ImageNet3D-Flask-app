@@ -106,3 +106,27 @@ See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu
 [2] [Robust Category-Level 6D Pose Estimation with Coarse-to-Fine Rendering of Neural Features](https://arxiv.org/abs/2209.05624) 
 <br>
 <!-- by zhuang xin jian 2205308040315 -->
+
+<2205308040353 潘钟贤>
+Future Enhancements:
+
+- Model Performance Optimization
+Multi-modal Data Fusion: Combine RGB images, depth maps, and point clouds to improve 3D object recognition accuracy.
+Lightweight Model Deployment: Explore model compression tools like TensorRT and ONNX Runtime to optimize inference speed and memory usage.
+Self-supervised/Unsupervised Learning: Introduce contrastive learning or generative models (e.g., GANs) to reduce reliance on labeled data.
+- 3D Rendering and Interaction Enhancement
+Real-time 3D Visualization: Integrate WebGL or Three.js for browser-based interactions like rotating, zooming, and slicing 3D models.
+AR/VR Support: Superimpose recognition results into AR/VR scenes via the WebXR standard to enhance user experience.
+Dynamic Scene Processing: Support video stream input for real-time tracking and motion analysis of 3D objects.
+- System Architecture Upgrades
+Microservices Architecture: Decompose modules (model inference, data preprocessing, rendering) into independent services, enabled by Docker/Kubernetes for elastic scaling.
+Edge Computing Support: Develop lightweight edge inference clients for IoT devices (e.g., cameras, robots) to reduce cloud dependency.
+Distributed Storage: Use object storage (e.g., MinIO) to manage large-scale 3D datasets and optimize read/write efficiency.
+- User Functionality Extensions
+Customizable Training: Allow users to upload data and fine-tune models via a UI, supporting transfer learning.
+Role-based Access Control: Granular permissions for admin, developer, and end-users to control data access and API usage.
+API Marketplace: Open-source model repository and API interfaces to enable community-contributed algorithmic plugins.
+- Cross-platform Compatibility
+Mobile Adaptation: Develop PWAs (Progressive Web Apps) or React Native apps for 3D recognition on smartphones/tablets.
+Multilingual Support: Internationalize the UI with translations to cater to global用户需求.
+
