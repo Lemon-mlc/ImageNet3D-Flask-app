@@ -52,6 +52,7 @@ This opens many new opportunities for 3D understanding (e.g., grounding, detecti
 **How do we describe an object in the 3D space?** In this project, we specify the 3D viewpoint of the object (see image below), the 2D location of the object (in the image plane), and the distance from the camera to the object. These six parameters allows us to fully specify the 3D location and 3D rotation of the object. Moreover, we are also interested in which subtype of the object is in the image -- if it is a car, is it a sedan or a hatchback. This is accomplished by associating the object with a best matching mesh model from a list of models given (you will see all the mesh models available in the bottom right corner of the annotation page).<br>
 
 Lastly every real image comes with an existing annotation obtained from a pretrained 3D model. Your job would be refining the prediction of the model, as well as labeling the quality of the object. See below for a full list of "things to do" for each real image.<br>
+<!-- 潘钟贤 --> 
 
 **❗Read me ☺ → Before you start, it is very important for you to go over this [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view) with qualitative examples demonstrating many important details. The first part of the tutorial is similar to this documentation and the second part of the tutorial provides a lot of qualitative images. Please go over a number of the examples in part two to make sure you fully grasp the idea.** <br>
 
@@ -104,28 +105,42 @@ After labeling all information, clicking the green save button or pushing "Enter
 
 ![image](static/images/ui_save.png)
 
-## 🧭Guidelines
-**Matching mesh model (with initializations provided by a pretrained model).** The best matching model from a list of mesh models given. This is crucial to make accurate estimations of the following parameters so this should be the first thing to do. Click on "<- Model" and "Model ->" buttons to change the mesh model selection.<br>
+# ImageNet3D Flask app
+## Guidelines
+***Matching mesh model (with initializations provided by a pretrained model).***
+The best matching model from a list of mesh models given. This is crucial to make accurate estimations of the following parameters so this should be the first thing to do. Click on "<- Model" and "Model ->" buttons to change the mesh model selection.
 
-**3D rotation (with initializations provided by a pretrained model).** Three parameters are used to specify the 3D rotation of an object: azimuth, elevation, and in-plane rotation (theta). Adjust the three parameters so the 3D rotation of the rendered object aligns with the 3D rotation of the object in the image. Make sure you are not simply aligning the segmentation or boundaries of the two objects. You should focus on aligning the 3D rotation of the objects so the rendered object is "pointing" to the same direction as the object in the image.<br>
+***3D rotation (with initializations provided by a pretrained model).***
+Three parameters are used to specify the 3D rotation of an object: azimuth, elevation, and in-plane rotation (theta). Adjust the three parameters so the 3D rotation of the rendered object aligns with the 3D rotation of the object in the image. Make sure you are not simply aligning the segmentation or boundaries of the two objects. You should focus on aligning the 3D rotation of the objects so the rendered object is "pointing" to the same direction as the object in the image.
 
-**2D location (with initializations provided by a pretrained model).** 2D location specifies the location of the center of the object.<br>
+***2D location (with initializations provided by a pretrained model).*** 2D location specifies the location of the center of the object.
 
-**Distance (with initializations provided by a pretrained model).** Distance between the object and the camera. To annotate the distance, make sure the "size" of the rendered object is roughly the same as the "size" of the object in the image.<br>
+***Distance (with initializations provided by a pretrained model).***
+Distance between the object and the camera. To annotate the distance, make sure the "size" of the rendered object is roughly the same as the "size" of the object in the image.
 
-**Object quality.** Object quality specifies how clearly the object is visible from the image. A "good" object would be clearly visible and not occluded. A "bad" object may be barely visible (imaging drving in heavy fog when cars in front of you are barely visible) or occluded by other objects. Several choices are considered:<br>
+***Object quality.***
+ Object quality specifies how clearly the object is visible from the image. A "good" object would be clearly visible and not occluded. A "bad" object may be barely visible (imaging drving in heavy fog when cars in front of you are barely visible) or occluded by other objects. Several choices are considered:
+ -  **Good.** Most part (more than 90%) of the object is clearly visible in the image.
+ -  **Partially visible.** A small part of the object is occluded by other objects or outside the image (truncated by image boundary).
+ -  **Barely visible.** only a small part of the object is clearly visible -- the other parts are either occluded or outside the image, or barely visible due to other reasons (e.g., weather).
+ -  **Bad quality / no object.** Most part of the object is occluded or outside the image; or the pose of the object is very hard to tell.
 
-- Good. Most part (more than 90%) of the object is clearly visible in the image.<br>
-- Partially visible. A small part of the object is occluded by other objects or outside the image (truncated by image boundary).<br>
-- Barely visible. only a small part of the object is clearly visible -- the other parts are either occluded or outside the image, or barely visible due to other reasons (e.g., weather).<br>
-- Bad quality / no object. Most part of the object is occluded or outside the image; or the pose of the object is very hard to tell.<br>
-**Dense scene.** This parameter tells if an object is very close to another object from the same category. Here "close" is defined in the 2D image plane -- two objects are close if the distance between them is small in the 2D image plane.<br>
+***Dense scene.*** 
+This parameter tells if an object is very close to another object from the same category. Here "close" is defined in the 2D image plane -- two objects are close if the distance between them is small in the 2D image plane.
 
+<<<<<<< HEAD
 - Not dense scene. The object is not close to another object from the same category. There can be multiple objects from the same category in one image but the objects are far away from each other.<br>
 - Dense scene. The object is very close to another object from the same category. They may occlude each other or simply very close to each other.<br>
 Please see the table below:
 ![image](static\images\parameter_annotation_details_1.png)
 <!-- by zhouxinian 2206302240333  parameter_annotation_details_1-->
+=======
+- **Not dense scene.** The object is not close to another object from the same category. There can be multiple objects from the same category in one image but the objects are far away from each other.
+- **Dense scene.** The object is very close to another object from the same category. They may occlude each other or simply very close to each other.
+
+<!-- 蒙霖昌 --> 
+<br>
+>>>>>>> 96889ae8b8b215beeb9aa72c165dfddb5235104f
 
 ## 🌰Examples
 See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).<br>
@@ -141,6 +156,7 @@ See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu
 [2] [Robust Category-Level 6D Pose Estimation with Coarse-to-Fine Rendering of Neural Features](https://arxiv.org/abs/2209.05624) 
 <br>
 <!-- by zhuang xin jian 2205308040315 -->
+<<<<<<< HEAD
 
 
 
@@ -210,3 +226,5 @@ References
 [2] Robust Category-Level 6D Pose Estimation Based on Neural Feature Coarse-to-Fine Rendering
 
 <!-- by zhouxinain 2206302240333 -->
+=======
+>>>>>>> 96889ae8b8b215beeb9aa72c165dfddb5235104f
