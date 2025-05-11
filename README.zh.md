@@ -8,12 +8,42 @@
 - pillow <br>
 - opencv-python-headless <br>
 - flask-login <br>
+- 也可以一步到位使用以下命令安装所需Python包:pip install Flask numpy matplotlib pillow opencv-python-headless flask-login
+<!-- by zhouxinain 2206302240333 一键下载-->
 <br>
 
 使用时会在当前目录创建imagene3dstorage文件夹， <br>
 在此文件夹的下一层目录中会有空的sqlite且字节为0的文件， <br>
 可将内容替换为软件根目录下的‘daatabasse_default.ssqlite’的内容即可正常使用。 <br>
 如对替换所需的软件感到困惑，可使用软件‘Navicat Premium’进行替换。 <br>
+文件分布如下：
+## Repository Structure
+'''
+📁 ImageNet3D-Flask-app/
+├── 📁 static/
+│   ├── 📁 images/
+│   ├── 📁 tmp/
+├── 📁 templates/
+│   ├── login.html
+│   ├── account.html
+│   ├── test.html
+│   ├── index.html
+│   ├── eval.html
+│   ├── quality.html
+│   ├── doc.html
+├── app.py
+├── config.py
+├── render.py
+├── database.sqlite
+├── database_default.sqlite
+├── README.md
+├── README.zh.md
+├── requirements.txt
+└── 📁 logs/
+'''
+<br>
+<!-- by zhouxinain 2206302240333  文件目录结构 -->
+
 
 ## 📓概述
 
@@ -46,6 +76,9 @@
 - **双簧管：** 几乎不可能判断双簧管的“方位角”。只需忽略此参数并匹配其他参数。<br>
 - **拐杖：** 拐杖有不同的类型（见[此处](https://www.physio-pedia.com/File:Types_of_crutches.jpg)）。我们只想要与我们拥有的网格模型匹配的类型（即腋下拐杖）。对于其他类型的拐杖，请将其标记为“质量差/无对象”。<br>
 - **沙袋：** 沙袋有不同的类型（见[此处](https://img2.storyblok.com/1800x743/filters:focal(null):format(webp)/f/115220/2400x990/eae71daccc/how-to-choose-the-right-punching-bag-for-your-workout.jpeg)）。我们只想要拳击袋和悬挂袋，呈圆柱形。对于沙袋，也忽略“方位角”参数。<br>
+- 如表：
+![ai_usage_screenshots](ai_usage_screenshots\2206302240333.png)
+<!-- by zhouxinain 2206302240333 表2206302240333 -->
 
 ## 🤖用户界面
 使用您的注释员 ID 登录网络应用程序。您将在此页面看到分配给您的任务列表，并跟踪您的进度。<br>
@@ -81,6 +114,9 @@
 6. **密集场景**：这个参数用于判断一个物体是否非常接近同一类别的另一个物体。这里“接近”是在二维图像平面中定义的——如果在二维图像平面中两个物体之间的距离很小，则认为它们接近。
     - **非密集场景**：该物体不接近同一类别的另一个物体。在一张图像中可能有多个同一类别的物体，但这些物体彼此相距较远。
     - **密集场景**：该物体非常接近同一类别的另一个物体。它们可能相互遮挡，或者只是彼此非常接近。
+    - 如下表：
+    ![ai_usage_screenshots](ai_usage_screenshots\2206302240333_4.png)
+    <!-- by zhouxinain 2206302240333 表2206302240333_4 -->
 
 ### 对比总结
 |参数类别|具体操作或判断标准|
