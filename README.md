@@ -146,13 +146,13 @@ In this project, accurately evaluating object quality is of utmost importance fo
 ## Object Quality Categories
 ![image](static/images/78A2E58F9E46FD7A0E9CC1562D266577.png)
 ![image](static/images/961DD301331F918F562CE6C6B6103827.png)
-- **Good**: In the image, most parts (more than 90%) of the object are clearly visible without significant occlusion. For example, the airplane in the top - left picture has its fuselage fully presented and is hardly occluded, falling into this category.
-- **Partially visible**: A small part of the object is occluded by other objects or extends beyond the image boundary. As shown in the top - right picture, the bottom of the cellphone is occluded by fingers, which meets the criteria for partially visible.
-- **Barely visible**: Only a tiny portion of the object is clearly distinguishable, while the remaining parts are occluded or outside the image. Just like the cellphone in the bottom - left picture, where most of it is not visible, it belongs to the barely visible category. 
-- **Bad quality / no object**: Most parts of the object are occluded, outside the image, or due to reasons such as image blurriness or excessive darkness, it is difficult to determine the object's pose. For instance, in the bottom - right picture, since the ashtray cannot be seen, it should be labeled as this category.
+- **Good**: In the image, most parts (more than 90%) of the object are clearly visible without significant occlusion. For example, the airplane in the top - left picture has its fuselage fully presented and is hardly occluded, falling into this category.<br>
+- **Partially visible**: A small part of the object is occluded by other objects or extends beyond the image boundary. As shown in the top - right picture, the bottom of the cellphone is occluded by fingers, which meets the criteria for partially visible.<br>
+- **Barely visible**: Only a tiny portion of the object is clearly distinguishable, while the remaining parts are occluded or outside the image. Just like the cellphone in the bottom - left picture, where most of it is not visible, it belongs to the barely visible category. <br>
+- **Bad quality / no object**: Most parts of the object are occluded, outside the image, or due to reasons such as image blurriness or excessive darkness, it is difficult to determine the object's pose. For instance, in the bottom - right picture, since the ashtray cannot be seen, it should be labeled as this category.<br>
 
 ## Annotation Suggestions
-When encountering objects that are barely visible or of bad quality / no object, although it is challenging to accurately determine their pose, you still need to make annotations based on your experience and imagination. Rest assured that the accuracy of the annotated pose does not have to be absolute. 
+When encountering objects that are barely visible or of bad quality / no object, although it is challenging to accurately determine their pose, you still need to make annotations based on your experience and imagination. Rest assured that the accuracy of the annotated pose does not have to be absolute. <br>
 See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).<br>
 <!--weirenwei -->
 ## 📚References
