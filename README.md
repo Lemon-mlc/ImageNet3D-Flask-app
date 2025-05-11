@@ -72,25 +72,34 @@ After labeling all information, clicking the green save button or pushing "Enter
 
 ![image](static/images/ui_save.png)
 
-## 🧭Guidelines
-**Matching mesh model (with initializations provided by a pretrained model).** The best matching model from a list of mesh models given. This is crucial to make accurate estimations of the following parameters so this should be the first thing to do. Click on "<- Model" and "Model ->" buttons to change the mesh model selection.<br>
+# ImageNet3D Flask app
+## Guidelines
+***Matching mesh model (with initializations provided by a pretrained model).***
+The best matching model from a list of mesh models given. This is crucial to make accurate estimations of the following parameters so this should be the first thing to do. Click on "<- Model" and "Model ->" buttons to change the mesh model selection.
 
-**3D rotation (with initializations provided by a pretrained model).** Three parameters are used to specify the 3D rotation of an object: azimuth, elevation, and in-plane rotation (theta). Adjust the three parameters so the 3D rotation of the rendered object aligns with the 3D rotation of the object in the image. Make sure you are not simply aligning the segmentation or boundaries of the two objects. You should focus on aligning the 3D rotation of the objects so the rendered object is "pointing" to the same direction as the object in the image.<br>
+***3D rotation (with initializations provided by a pretrained model).***
+Three parameters are used to specify the 3D rotation of an object: azimuth, elevation, and in-plane rotation (theta). Adjust the three parameters so the 3D rotation of the rendered object aligns with the 3D rotation of the object in the image. Make sure you are not simply aligning the segmentation or boundaries of the two objects. You should focus on aligning the 3D rotation of the objects so the rendered object is "pointing" to the same direction as the object in the image.
 
-**2D location (with initializations provided by a pretrained model).** 2D location specifies the location of the center of the object.<br>
+***2D location (with initializations provided by a pretrained model).*** 2D location specifies the location of the center of the object.
 
-**Distance (with initializations provided by a pretrained model).** Distance between the object and the camera. To annotate the distance, make sure the "size" of the rendered object is roughly the same as the "size" of the object in the image.<br>
+***Distance (with initializations provided by a pretrained model).***
+Distance between the object and the camera. To annotate the distance, make sure the "size" of the rendered object is roughly the same as the "size" of the object in the image.
 
-**Object quality.** Object quality specifies how clearly the object is visible from the image. A "good" object would be clearly visible and not occluded. A "bad" object may be barely visible (imaging drving in heavy fog when cars in front of you are barely visible) or occluded by other objects. Several choices are considered:<br>
+***Object quality.***
+ Object quality specifies how clearly the object is visible from the image. A "good" object would be clearly visible and not occluded. A "bad" object may be barely visible (imaging drving in heavy fog when cars in front of you are barely visible) or occluded by other objects. Several choices are considered:
+ -  **Good.** Most part (more than 90%) of the object is clearly visible in the image.
+ -  **Partially visible.** A small part of the object is occluded by other objects or outside the image (truncated by image boundary).
+ -  **Barely visible.** only a small part of the object is clearly visible -- the other parts are either occluded or outside the image, or barely visible due to other reasons (e.g., weather).
+ -  **Bad quality / no object.** Most part of the object is occluded or outside the image; or the pose of the object is very hard to tell.
 
-- Good. Most part (more than 90%) of the object is clearly visible in the image.<br>
-- Partially visible. A small part of the object is occluded by other objects or outside the image (truncated by image boundary).<br>
-- Barely visible. only a small part of the object is clearly visible -- the other parts are either occluded or outside the image, or barely visible due to other reasons (e.g., weather).<br>
-- Bad quality / no object. Most part of the object is occluded or outside the image; or the pose of the object is very hard to tell.<br>
-**Dense scene.** This parameter tells if an object is very close to another object from the same category. Here "close" is defined in the 2D image plane -- two objects are close if the distance between them is small in the 2D image plane.<br>
+***Dense scene.*** 
+This parameter tells if an object is very close to another object from the same category. Here "close" is defined in the 2D image plane -- two objects are close if the distance between them is small in the 2D image plane.
 
-- Not dense scene. The object is not close to another object from the same category. There can be multiple objects from the same category in one image but the objects are far away from each other.<br>
-- Dense scene. The object is very close to another object from the same category. They may occlude each other or simply very close to each other.<br>
+- **Not dense scene.** The object is not close to another object from the same category. There can be multiple objects from the same category in one image but the objects are far away from each other.
+- **Dense scene.** The object is very close to another object from the same category. They may occlude each other or simply very close to each other.
+
+<!-- 蒙霖昌 --> 
+<br>
 
 ## 🌰Examples
 See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).<br>
@@ -106,27 +115,3 @@ See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu
 [2] [Robust Category-Level 6D Pose Estimation with Coarse-to-Fine Rendering of Neural Features](https://arxiv.org/abs/2209.05624) 
 <br>
 <!-- by zhuang xin jian 2205308040315 -->
-
-<2205308040353 潘钟贤>
-Future Enhancements:
-
-- Model Performance Optimization
-Multi-modal Data Fusion: Combine RGB images, depth maps, and point clouds to improve 3D object recognition accuracy.
-Lightweight Model Deployment: Explore model compression tools like TensorRT and ONNX Runtime to optimize inference speed and memory usage.
-Self-supervised/Unsupervised Learning: Introduce contrastive learning or generative models (e.g., GANs) to reduce reliance on labeled data.
-- 3D Rendering and Interaction Enhancement
-Real-time 3D Visualization: Integrate WebGL or Three.js for browser-based interactions like rotating, zooming, and slicing 3D models.
-AR/VR Support: Superimpose recognition results into AR/VR scenes via the WebXR standard to enhance user experience.
-Dynamic Scene Processing: Support video stream input for real-time tracking and motion analysis of 3D objects.
-- System Architecture Upgrades
-Microservices Architecture: Decompose modules (model inference, data preprocessing, rendering) into independent services, enabled by Docker/Kubernetes for elastic scaling.
-Edge Computing Support: Develop lightweight edge inference clients for IoT devices (e.g., cameras, robots) to reduce cloud dependency.
-Distributed Storage: Use object storage (e.g., MinIO) to manage large-scale 3D datasets and optimize read/write efficiency.
-- User Functionality Extensions
-Customizable Training: Allow users to upload data and fine-tune models via a UI, supporting transfer learning.
-Role-based Access Control: Granular permissions for admin, developer, and end-users to control data access and API usage.
-API Marketplace: Open-source model repository and API interfaces to enable community-contributed algorithmic plugins.
-- Cross-platform Compatibility
-Mobile Adaptation: Develop PWAs (Progressive Web Apps) or React Native apps for 3D recognition on smartphones/tablets.
-Multilingual Support: Internationalize the UI with translations to cater to global用户需求.
-
