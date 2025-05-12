@@ -8,12 +8,42 @@
 - pillow <br>
 - opencv-python-headless <br>
 - flask-login <br>
+- 也可以一步到位使用以下命令安装所需Python包:pip install Flask numpy matplotlib pillow opencv-python-headless flask-login
+<!-- by zhouxinain 2206302240333 一键下载-->
 <br>
 
 使用时会在当前目录创建imagene3dstorage文件夹， <br>
 在此文件夹的下一层目录中会有空的sqlite且字节为0的文件， <br>
 可将内容替换为软件根目录下的‘daatabasse_default.ssqlite’的内容即可正常使用。 <br>
 如对替换所需的软件感到困惑，可使用软件‘Navicat Premium’进行替换。 <br>
+文件分布如下：
+## Repository Structure
+'''
+📁 ImageNet3D-Flask-app/
+├── 📁 static/
+│   ├── 📁 images/
+│   ├── 📁 tmp/
+├── 📁 templates/
+│   ├── login.html
+│   ├── account.html
+│   ├── test.html
+│   ├── index.html
+│   ├── eval.html
+│   ├── quality.html
+│   ├── doc.html
+├── app.py
+├── config.py
+├── render.py
+├── database.sqlite
+├── database_default.sqlite
+├── README.md
+├── README.zh.md
+├── requirements.txt
+└── 📁 logs/
+'''
+<br>
+<!-- by zhouxinain 2206302240333  文件目录结构 -->
+
 
 ## 📓概述
 
@@ -46,6 +76,11 @@
 - **双簧管：** 几乎不可能判断双簧管的“方位角”。只需忽略此参数并匹配其他参数。<br>
 - **拐杖：** 拐杖有不同的类型（见[此处](https://www.physio-pedia.com/File:Types_of_crutches.jpg)）。我们只想要与我们拥有的网格模型匹配的类型（即腋下拐杖）。对于其他类型的拐杖，请将其标记为“质量差/无对象”。<br>
 - **沙袋：** 沙袋有不同的类型（见[此处](https://img2.storyblok.com/1800x743/filters:focal(null):format(webp)/f/115220/2400x990/eae71daccc/how-to-choose-the-right-punching-bag-for-your-workout.jpeg)）。我们只想要拳击袋和悬挂袋，呈圆柱形。对于沙袋，也忽略“方位角”参数。<br>
+<!-- by pengyaoqing 2205308040322 -->
+
+- 如表：
+![ai_usage_screenshots](ai_usage_screenshots\2206302240333.png)
+<!-- by zhouxinain 2206302240333 表2206302240333 -->
 
 ## 🤖用户界面
 使用您的注释员 ID 登录网络应用程序。您将在此页面看到分配给您的任务列表，并跟踪您的进度。<br>
@@ -81,6 +116,9 @@
 6. **密集场景**：这个参数用于判断一个物体是否非常接近同一类别的另一个物体。这里“接近”是在二维图像平面中定义的——如果在二维图像平面中两个物体之间的距离很小，则认为它们接近。
     - **非密集场景**：该物体不接近同一类别的另一个物体。在一张图像中可能有多个同一类别的物体，但这些物体彼此相距较远。
     - **密集场景**：该物体非常接近同一类别的另一个物体。它们可能相互遮挡，或者只是彼此非常接近。
+    - 如下表：
+    ![ai_usage_screenshots](ai_usage_screenshots\2206302240333_4.png)
+    <!-- by zhouxinain 2206302240333 表2206302240333_4 -->
 
 ### 对比总结
 |参数类别|具体操作或判断标准|
@@ -93,9 +131,21 @@
 |密集场景|非密集场景：物体不接近同类物体；密集场景：物体接近同类物体，可能相互遮挡或距离很近| 
 <!-- 蒙霖昌 -->
 <br>
-## 🌰示例
-请参阅[教程](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view)。<br>
 
+## 🌰示例
+## 物体质量评估标准
+在本项目中，准确评估物体质量对于标注工作至关重要。我们将物体质量分为以下四个类别，每个类别都有明确的定义和示例，帮助您更好地理解和操作。
+## 物体质量分类
+![image](static/images/78A2E58F9E46FD7A0E9CC1562D266577.png)
+![image](static/images/961DD301331F918F562CE6C6B6103827.png)
+Good（良好）：图像中物体的大部分（超过 90%）清晰可见，没有明显的遮挡情况。例如，左上方图片中的飞机，其机身完整呈现，几乎未被遮挡，属于此等级。<br>
+Partially visible（部分可见）：物体有一小部分被其他物体遮挡，或者超出了图像的边界。如右上方图片所示，手机的底部被手指遮挡，这种情况就符合部分可见的标准。<br>
+Barely visible（几乎不可见）：物体仅有极小部分清晰可辨，其余部分被遮挡或者在图像之外。就像左下方图片中的手机，大部分都看不到，属于几乎不可见的范畴。<br>
+Bad quality /no object（质量差 / 无对象）：物体大部分被遮挡、超出图像范围，或者由于图像模糊、过暗等原因，难以判断物体的姿态。比如右下方的图片，无法看到烟灰缸，应标记为此等级。<br>
+## 标注建议
+当遇到几乎不可见或质量差 / 无对象的物体时，尽管难以精准判断其姿态，您仍需凭借经验和想象进行标注。请放心，标注的姿态不需要绝对精确。<br>
+请参阅[教程](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view)。<br>
+<!--韦人玮 -->
 ## 📚参考文献
 <p id="ref1"></p>
 
