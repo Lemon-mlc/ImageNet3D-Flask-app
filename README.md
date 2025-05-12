@@ -59,24 +59,7 @@ Lastly every real image comes with an existing annotation obtained from a pretra
 
 ![image](static/images/imagenet3d_viewpoint.png)
 
-## ⚙️New for v2 (Mar 2024)
-1.As we start to deal with more challenging classes, we no longer have good initializations for the 3D orientation. New buttons are added with "↓↓" and "↑↑", which mean they are coarse buttons with bigger steps.<br>
 
-2.Since we don't have good initializations, labeling one image may takes longer. Please be patient and make sure the results are visually correct.<br>
-
-3.The quality of the images can be lower too -- some bounding boxes may not correspond to the class of interest. It is therefore important to label and disregard "bad" objects. Label the question as "bad quality/no object" so we will disregard this sample. In this case, you may skip tuning other parameters.<br>
-
-4.Similar as before, it is important to label the visibility and the scene density. If you have gone through the [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view), you should have a good feeling of how to label these questions.<br>
-
-### 🎨Some other class-specific notes:<br>
-
-- **bicycle-built-for-two:** We don't have good mesh models for tandem bicycles so we will be using mesh models of normal bicycles. This shouldn't be a problem as long as you match the 2D center and 3D orientation of the tandem bicycle in the image and the rendered mesh model.<br>
-
-- **beaker:** There are different subtypes of beakers but we don't have good mesh models covering every shape. This wouldn't be a problem for the pose parameters we consider here. For 3D viewpoint, match the orientation of the beaker notch. 2D location and distance should be straightforward too.<br>
-
-- **oboe:** It's almost impossible to tell the "azimuth" of an oboe. Just ignore this parameter and match the others.<br>
-
-- **crutch:** There can be different types of crutches (see [here](https://www.physio-pedia.com/File:Types_of_crutches.jpg)). We only want the type that matches the mesh model we have (i.e., axillary crutch). For other types of crutches, just label them as "bad quality/no object".<br>
 
 - **punching_bag:** There are different types of punching bags (see [here](https://img2.storyblok.com/1800x743/filters:focal(null):format(webp)/f/115220/2400x990/eae71daccc/how-to-choose-the-right-punching-bag-for-your-workout.jpeg)). We only want boxing bag and hanging bags, with a cylinder shape. For punching bags, also ignore the "azimuth" parameter.<br>
 Please see the table below:
