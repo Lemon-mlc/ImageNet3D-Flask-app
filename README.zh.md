@@ -76,6 +76,8 @@
 - **双簧管：** 几乎不可能判断双簧管的“方位角”。只需忽略此参数并匹配其他参数。<br>
 - **拐杖：** 拐杖有不同的类型（见[此处](https://www.physio-pedia.com/File:Types_of_crutches.jpg)）。我们只想要与我们拥有的网格模型匹配的类型（即腋下拐杖）。对于其他类型的拐杖，请将其标记为“质量差/无对象”。<br>
 - **沙袋：** 沙袋有不同的类型（见[此处](https://img2.storyblok.com/1800x743/filters:focal(null):format(webp)/f/115220/2400x990/eae71daccc/how-to-choose-the-right-punching-bag-for-your-workout.jpeg)）。我们只想要拳击袋和悬挂袋，呈圆柱形。对于沙袋，也忽略“方位角”参数。<br>
+<!-- by pengyaoqing 2205308040322 -->
+
 - 如表：
 ![ai_usage_screenshots](ai_usage_screenshots\2206302240333.png)
 <!-- by zhouxinain 2206302240333 表2206302240333 -->

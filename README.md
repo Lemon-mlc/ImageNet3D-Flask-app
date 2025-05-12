@@ -77,6 +77,7 @@ Lastly every real image comes with an existing annotation obtained from a pretra
 - **oboe:** It's almost impossible to tell the "azimuth" of an oboe. Just ignore this parameter and match the others.<br>
 
 - **crutch:** There can be different types of crutches (see [here](https://www.physio-pedia.com/File:Types_of_crutches.jpg)). We only want the type that matches the mesh model we have (i.e., axillary crutch). For other types of crutches, just label them as "bad quality/no object".<br>
+<!-- by pengyaoqing 2205308040322 -->
 
 - **punching_bag:** There are different types of punching bags (see [here](https://img2.storyblok.com/1800x743/filters:focal(null):format(webp)/f/115220/2400x990/eae71daccc/how-to-choose-the-right-punching-bag-for-your-workout.jpeg)). We only want boxing bag and hanging bags, with a cylinder shape. For punching bags, also ignore the "azimuth" parameter.<br>
 Please see the table below:
