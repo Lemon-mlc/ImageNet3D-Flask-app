@@ -169,6 +169,24 @@ In this project, accurately evaluating object quality is of utmost importance fo
 When encountering objects that are barely visible or of bad quality / no object, although it is challenging to accurately determine their pose, you still need to make annotations based on your experience and imagination. Rest assured that the accuracy of the annotated pose does not have to be absolute. <br>
 See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).<br>
 <!--weirenwei -->
+### ImageNet3D Project Annotation Guidelines - Taking Cellphones and Buckets as Examples<br>
+In the ImageNet3D project, precise annotation is of utmost importance for data quality. The following are the key annotation guidelines for two object categories: cellphones and buckets.<br>
+
+![image](static\images\QQ图片20250513200816.png)
+#### Cellphone<br>
+- **CAD Model Coverage**: CAD models are expected to cover the majority of cellphone objects.<br>
+- **Sample - Marking Criteria**:<br>
+    - Mark the sample when the cellphone is barely visible.<br>
+    - Mark the sample if only a small portion of the cellphone is visible.<br>
+    - Mark the sample if the object is not a cellphone.<br>
+![image](static\images\QQ图片20250513200838.png)
+#### Bucket<br>
+- **CAD Model Coverage**: CAD models should cover most bucket objects.<br>
+- **Model - Matching Adjustment**: In cases where the CAD model does not perfectly match (for instance, if the bucket in the image is slightly longer than the CAD model), make sure that the centers of the two buckets are aligned. Currently, many annotations align the top edge of the bucket rather than the center, and this needs to be rectified.<br>
+- **3D Rotation Requirement**: Ensure that the 3D rotation is accurate. The projected CAD model on the image does not necessarily need to fully overlap with the bucket in the image.<br>
+
+Adhering to these annotation rules can effectively enhance the accuracy and consistency of data annotation in the ImageNet3D project, thereby providing a reliable data basis for subsequent research and applications. <br>
+
 ## 📚References
 <p id="ref1"></p>
 
