@@ -28,7 +28,6 @@
 28. **2D location**：2D 位置，指物体在二维图像平面上的位置，项目里通过指定物体中心的坐标来确定。<br>
 29. **mesh model**：网格模型，由多边形网格表示物体形状，在项目中用于匹配图像中的物体，确定物体的 3D 形状和姿态。<br>
 30. **object quality**：物体质量，用于评估图像中物体的可见程度和完整性，分为 “Good”“Partially visible”“Barely visible”“Bad quality /no object” 四类。<br>
-
 31.**Annotation Collection**：标注收集，是文档中 ImageNet3D 任务的核心操作之一，标注员通过收集各类标注信息，如 6D 姿态、物体质量等，为后续的数据分析和模型训练提供数据基础。<br>
 32.**Saved Annotation**：保存的标注，涉及标注工作中的数据存储环节，标注员完成标注后需保存，系统会对保存情况进行反馈，“Annotation saved” 或 “Failed to save” 的提示体现了对标注数据保存状态的管理。<br>
 33.**Unannotated Question**：未标注问题，在标注流程中，点击任务会跳转到未标注问题，标注员依此进行标注工作，它是标注任务推进的基本单元。<br>
