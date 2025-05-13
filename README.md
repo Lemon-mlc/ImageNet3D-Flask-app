@@ -164,11 +164,28 @@ In this project, accurately evaluating object quality is of utmost importance fo
 - **Partially visible**: A small part of the object is occluded by other objects or extends beyond the image boundary. As shown in the top - right picture, the bottom of the cellphone is occluded by fingers, which meets the criteria for partially visible.<br>
 - **Barely visible**: Only a tiny portion of the object is clearly distinguishable, while the remaining parts are occluded or outside the image. Just like the cellphone in the bottom - left picture, where most of it is not visible, it belongs to the barely visible category. <br>
 - **Bad quality / no object**: Most parts of the object are occluded, outside the image, or due to reasons such as image blurriness or excessive darkness, it is difficult to determine the object's pose. For instance, in the bottom - right picture, since the ashtray cannot be seen, it should be labeled as this category.<br>
+<!--weirenwei -->
+### ImageNet3D Project Annotation Guidelines - Taking Cellphones and Buckets as Examples<br>
+In the ImageNet3D project, precise annotation is of utmost importance for data quality. The following are the key annotation guidelines for two object categories: cellphones and buckets.<br>
 
+![image](static/images/4073aaf8c8da6ce0753a70e208e771ac.png)
+#### Cellphone<br>
+- **CAD Model Coverage**: CAD models are expected to cover the majority of cellphone objects.<br>
+- **Sample - Marking Criteria**:<br>
+    - Mark the sample when the cellphone is barely visible.<br>
+    - Mark the sample if only a small portion of the cellphone is visible.<br>
+    - Mark the sample if the object is not a cellphone.<br>
+![image](static/images/146e3a3544aa9775ef58e00a0479ee0e.png)
+#### Bucket<br>
+- **CAD Model Coverage**: CAD models should cover most bucket objects.<br>
+- **Model - Matching Adjustment**: In cases where the CAD model does not perfectly match (for instance, if the bucket in the image is slightly longer than the CAD model), make sure that the centers of the two buckets are aligned. Currently, many annotations align the top edge of the bucket rather than the center, and this needs to be rectified.<br>
+- **3D Rotation Requirement**: Ensure that the 3D rotation is accurate. The projected CAD model on the image does not necessarily need to fully overlap with the bucket in the image.<br>
+
+Adhering to these annotation rules can effectively enhance the accuracy and consistency of data annotation in the ImageNet3D project, thereby providing a reliable data basis for subsequent research and applications. <br>
+<!--by周家乐-->
 ## Annotation Suggestions
 When encountering objects that are barely visible or of bad quality / no object, although it is challenging to accurately determine their pose, you still need to make annotations based on your experience and imagination. Rest assured that the accuracy of the annotated pose does not have to be absolute. <br>
 See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).<br>
-<!--weirenwei -->
 ## 📚References
 <p id="ref1"></p>
 
