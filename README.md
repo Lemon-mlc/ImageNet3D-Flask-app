@@ -172,14 +172,14 @@ See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu
 ### ImageNet3D Project Annotation Guidelines - Taking Cellphones and Buckets as Examples<br>
 In the ImageNet3D project, precise annotation is of utmost importance for data quality. The following are the key annotation guidelines for two object categories: cellphones and buckets.<br>
 
-![image](static\images\QQ图片20250513200816.png)
+![image](static\images\20250513200816.png)
 #### Cellphone<br>
 - **CAD Model Coverage**: CAD models are expected to cover the majority of cellphone objects.<br>
 - **Sample - Marking Criteria**:<br>
     - Mark the sample when the cellphone is barely visible.<br>
     - Mark the sample if only a small portion of the cellphone is visible.<br>
     - Mark the sample if the object is not a cellphone.<br>
-![image](static\images\QQ图片20250513200838.png)
+![image](static\images\20250513200838.png)
 #### Bucket<br>
 - **CAD Model Coverage**: CAD models should cover most bucket objects.<br>
 - **Model - Matching Adjustment**: In cases where the CAD model does not perfectly match (for instance, if the bucket in the image is slightly longer than the CAD model), make sure that the centers of the two buckets are aligned. Currently, many annotations align the top edge of the bucket rather than the center, and this needs to be rectified.<br>
