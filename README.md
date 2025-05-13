@@ -164,10 +164,6 @@ In this project, accurately evaluating object quality is of utmost importance fo
 - **Partially visible**: A small part of the object is occluded by other objects or extends beyond the image boundary. As shown in the top - right picture, the bottom of the cellphone is occluded by fingers, which meets the criteria for partially visible.<br>
 - **Barely visible**: Only a tiny portion of the object is clearly distinguishable, while the remaining parts are occluded or outside the image. Just like the cellphone in the bottom - left picture, where most of it is not visible, it belongs to the barely visible category. <br>
 - **Bad quality / no object**: Most parts of the object are occluded, outside the image, or due to reasons such as image blurriness or excessive darkness, it is difficult to determine the object's pose. For instance, in the bottom - right picture, since the ashtray cannot be seen, it should be labeled as this category.<br>
-
-## Annotation Suggestions
-When encountering objects that are barely visible or of bad quality / no object, although it is challenging to accurately determine their pose, you still need to make annotations based on your experience and imagination. Rest assured that the accuracy of the annotated pose does not have to be absolute. <br>
-See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).<br>
 <!--weirenwei -->
 ### ImageNet3D Project Annotation Guidelines - Taking Cellphones and Buckets as Examples<br>
 In the ImageNet3D project, precise annotation is of utmost importance for data quality. The following are the key annotation guidelines for two object categories: cellphones and buckets.<br>
@@ -186,7 +182,10 @@ In the ImageNet3D project, precise annotation is of utmost importance for data q
 - **3D Rotation Requirement**: Ensure that the 3D rotation is accurate. The projected CAD model on the image does not necessarily need to fully overlap with the bucket in the image.<br>
 
 Adhering to these annotation rules can effectively enhance the accuracy and consistency of data annotation in the ImageNet3D project, thereby providing a reliable data basis for subsequent research and applications. <br>
-
+<!--by周家乐-->
+## Annotation Suggestions
+When encountering objects that are barely visible or of bad quality / no object, although it is challenging to accurately determine their pose, you still need to make annotations based on your experience and imagination. Rest assured that the accuracy of the annotated pose does not have to be absolute. <br>
+See [tutorial](https://drive.google.com/file/d/1BiQ4CoYbhABI5S2oC0M7IGqqvUmosnmu/view).<br>
 ## 📚References
 <p id="ref1"></p>
 
